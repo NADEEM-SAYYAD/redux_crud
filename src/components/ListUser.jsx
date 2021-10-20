@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersData, deleteUsersData } from "../redux/index";
 import { NavLink } from "react-router-dom";
+import Spinner from "../components/Spinner";
+
 const ListUser = () => {
     const userData = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -9,6 +11,10 @@ const ListUser = () => {
     useEffect(() => {
         dispatch(getUsersData());
     }, []);
+
+    if(userData.loading){
+        return <Spinner />
+    }
 
     return (
         <div className="container">
