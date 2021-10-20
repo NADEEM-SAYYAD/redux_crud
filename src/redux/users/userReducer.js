@@ -30,23 +30,28 @@ const userReducer = (state = initialState,action) => {
         case USER_ADD:
             return{
                 ...state,
-                data : [...state.data,action.payload]
+                data : [...state.data,action.payload],
+                loading :false,
+                error :null,
             }
         case USER_ERROR:
             return{
                 ...state,
+                loading :false,
                 error: action.error
             }
         case USER_DELETE:
             const filterdData = state.data.filter(u=> u.id !== action.payload);
             return{
                 ...state,
+                loading :false,
                 data : filterdData
             }
         case USER_UPDATE:
             const updateData = state.data.map(u=>u.id === action.payload.editId ? {...u,...action.payload.data} :u)
             return{
                 ...state,
+                loading :false,
                 data : updateData
             }
         default: return state;

@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 const EditUser = () =>{
     const history = useHistory();
-    const userId = useParams().userId;
+    const {userId} = useParams();
     const userData = useSelector(state=>state.user)
     const editData = userData.data.filter(u=>u.id === userId)[0];
     const dispatch = useDispatch();
